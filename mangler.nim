@@ -144,7 +144,7 @@ proc fieldIdent(ident: string, p: Parser): PNode =
     addSon(pragmas, newIdentStrLitPair("importc", ident, p))
 
 proc doImport(ident: string, pragmas: PNode, p: Parser) =
-  if p.options.dynlibSym.len > 0 or p.options.useHeader:
+  if p.options.dynlibSym.len > 0 or p.options.useHeader or pfClibUserPragma in p.options.flags:
     addImportToPragma(pragmas, p.currentNamespace & ident, p)
 
 proc doImportCpp(ident: string, pragmas: PNode, p: Parser) =
